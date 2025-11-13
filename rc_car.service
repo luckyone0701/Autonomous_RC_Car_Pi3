@@ -1,0 +1,12 @@
+[Unit]
+Description=Autonomous RC Car Web Dashboard
+After=network.target
+
+[Service]
+ExecStart=/home/pi/Autonomous_RC_Car_Pi3/venv/bin/python /home/pi/Autonomous_RC_Car_Pi3/app.py
+WorkingDirectory=/home/pi/Autonomous_RC_Car_Pi3
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,18 @@
+const socket = io();
+
+function sendControl(d){ socket.emit('control',{direction:d}); }
+function steer(a){ socket.emit('steer',{angle:a}); }
+function toggleMode(){ socket.emit('toggle_mode'); }
+function toggleVoice(){ socket.emit('toggle_voice'); }
+
+socket.on('mode_update', m=>document.getElementById('mode-display').textContent=m);
+socket.on('voice_update', e=>document.getElementById('voice-status').textContent=e?'on':'off');
+socket.on('voice_command', c=>{
+  console.log("Voice:", c);
+  if(["forward","backward","stop"].includes(c)) sendControl(c);
+  if(c==="left") steer(45);
+  if(c==="right") steer(135);
+});
+socket.on('gps_update',pos=>{
+  document.getElementById('gps').textContent=`Lat: ${pos.lat.toFixed(4)} Lon: ${pos.lon.toFixed(4)}`;
+});

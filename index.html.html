@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RC Car Dashboard</title>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="/static/dashboard.js"></script>
+  <style>
+    body { font-family:sans-serif; text-align:center; background:#f7f7f7; }
+    video,img { border-radius:12px; box-shadow:0 0 10px #ccc; }
+    button { margin:5px; padding:10px 15px; border:none; border-radius:8px; }
+    #camera-container { margin:20px auto; }
+  </style>
+</head>
+<body>
+  <h2>Autonomous RC Car Dashboard</h2>
+  <div id="camera-container">
+    <img src="/video_feed" width="640">
+  </div>
+  <div>
+    <button onclick="sendControl('forward')">Forward</button>
+    <button onclick="sendControl('backward')">Backward</button>
+    <button onclick="sendControl('stop')">Stop</button>
+  </div>
+  <div>
+    <button onclick="toggleMode()">Toggle Mode</button>
+    <span id="mode-display">manual</span>
+  </div>
+  <div>
+    <button onclick="toggleVoice()">🎤 Voice Control</button>
+    <span id="voice-status">off</span>
+  </div>
+  <p id="gps"></p>
+</body>
+</html>
